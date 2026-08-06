@@ -14,8 +14,8 @@ Telegram-бот, уведомляющий о проверке работ в Devm
 Для этого создайте файл ".env" рядом с "main.py" и запишите туда данные в формате: ПЕРЕМЕННАЯ=значение.  
     Потребуются следущие переменные:  
     - `TG_BOT_TOKEN` — API-токен Telegram-бота.
-    - `TG_CHAT_ID` — числовой ID Telegram-пользователя, который будет администратором бота. Можно указать несколько ID через запятую.  
-    - `DEVMAN_API_TOKEN` —   
+    - `TG_CHAT_ID` — числовой ID Telegram-пользователя, которому будут приходить уведомления от бота. Чтобы получить свой chat_id, напишите в Telegram специальному боту: [@userinfobot](https://telegram.me/userinfobot).
+    - `DEVMAN_API_TOKEN` —  ваш персональный токен для аутентификации в API Девмана. Чтобы получить свой токен, перейдите в документацию [API Девмана](https://dvmn.org/api/docs/).
     
     Пример заполнения файла:
     ```
@@ -33,7 +33,6 @@ Telegram-бот, уведомляющий о проверке работ в Devm
 #### Полезные ссылки о ботах и пользователях в Telegram:
 - [Как регистрировать бота](https://way23.ru/регистрация-бота-в-telegram.html)
 - [Отец ботов](https://telegram.me/BotFather)
-- [Как создать канал, бота и получить токен.](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 - [Как узнать ID в Telegram](https://skyeng.ru/it-industry/it/kak-uznat-id-v-telegram-prosto-i-bystro/)
 
 
