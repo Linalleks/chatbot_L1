@@ -15,12 +15,20 @@ def send_message_to_TG(checked_lessons):
     bot = telegram.Bot(token=TG_BOT_TOKEN)
     for lesson in checked_lessons:
         if lesson["is_negative"]:
-            text = (f'У Вас проверили работу [{lesson["lesson_title"]}]({lesson["lesson_url"]})\n\n'
-                    'К сожалению, в работе нашлись ошибки\.')
+            text = (
+                f'У Вас проверили работу [{lesson["lesson_title"]}]({lesson["lesson_url"]})\n\n'
+                'К сожалению, в работе нашлись ошибки\.'
+            )
         else:
-            text = (f'У Вас проверили работу [{lesson["lesson_title"]}]({lesson["lesson_url"]})\n\n'
-                    'Преподавателю все понравилось, можно приступать к следующему уроку\!')
-        bot.send_message(chat_id=TG_CHAT_ID, text=text, parse_mode=telegram.ParseMode.MARKDOWN_V2)
+            text = (
+                f'У Вас проверили работу [{lesson["lesson_title"]}]({lesson["lesson_url"]})\n\n'
+                'Преподавателю все понравилось, можно приступать к следующему уроку\!'
+            )
+        bot.send_message(
+            chat_id=TG_CHAT_ID,
+            text=text,
+            parse_mode=telegram.ParseMode.MARKDOWN_V2
+        )
 
 
 def main():
@@ -38,10 +46,8 @@ def main():
             dict_response = response.json()
 
             if dict_response['status'] == 'timeout':
-                print('таймаут:', dict_response['timestamp_to_request'])
                 params = {'timestamp': dict_response['timestamp_to_request']}
             else:
-                print(dict_response)
                 send_message_to_TG(dict_response['new_attempts'])
                 params = {}
         except ReadTimeout:
