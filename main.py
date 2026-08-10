@@ -43,12 +43,12 @@ def main():
             )
             response.raise_for_status()
 
-            dict_response = response.json()
+            checked_lessons = response.json()
 
-            if dict_response['status'] == 'timeout':
-                params = {'timestamp': dict_response['timestamp_to_request']}
+            if checked_lessons['status'] == 'timeout':
+                params = {'timestamp': checked_lessons['timestamp_to_request']}
             else:
-                send_message_to_TG(dict_response['new_attempts'])
+                send_message_to_TG(checked_lessons['new_attempts'])
                 params = {}
         except ReadTimeout:
             continue
