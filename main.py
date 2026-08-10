@@ -1,3 +1,5 @@
+from time import sleep
+
 import requests
 import telegram
 from environs import Env
@@ -34,6 +36,8 @@ def send_message_to_TG(checked_lessons):
 def main():
     headers = {'Authorization': DEVMAN_API_TOKEN}
     params = {}
+    retries_limit = 5
+    retries = 0
     while True:
         try:
             response = requests.get(
@@ -50,9 +54,17 @@ def main():
             else:
                 send_message_to_TG(checked_lessons['new_attempts'])
                 params = {}
+
+            retries = 0
         except ReadTimeout:
             continue
         except ConnectionError:
+            retries += 1
+            if retries < retries_limit:
+                connection_delay = retries
+            else:
+                connection_delay = 7200
+            sleep(connection_delay)
             continue
 
 
